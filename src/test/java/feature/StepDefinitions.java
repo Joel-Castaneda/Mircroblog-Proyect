@@ -250,6 +250,13 @@ public class StepDefinitions {
         rpassword.sendKeys("1234");
         email.sendKeys("joel");
     }
+
+    @Given("being logged")
+    public void being_logged() {
+        test_page_is_not_down();
+        IWriteMyInformation();
+        IClickTheLoginButton();
+        AWelcomeMessagePopsUp();
+    }
 }
-//Abshalom
-//Luna
+
