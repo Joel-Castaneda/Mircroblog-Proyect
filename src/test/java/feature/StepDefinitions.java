@@ -251,5 +251,3 @@ public class StepDefinitions {
         email.sendKeys("joel");
     }
 }
-//Jaime
-//Gallegosss
