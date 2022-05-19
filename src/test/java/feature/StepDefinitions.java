@@ -6,6 +6,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -256,6 +257,19 @@ public class StepDefinitions {
         IWriteMyInformation();
         IClickTheLoginButton();
         AWelcomeMessagePopsUp();
+    }
+
+    //Logout
+    @When("i click the logout button")
+    public void iClickTheLogoutButton() {
+        WebElement logbutton = driver.findElement(By.cssSelector("[href='/auth/logout']"));
+        logbutton.click();
+    }
+
+    @Then("the inputs to login should be displayed")
+    public void theInputsToLoginShouldBeDisplayed() {
+        WebElement username = driver.findElement(By.id("username"));
+        assertTrue(username.isDisplayed());
     }
 }
 
