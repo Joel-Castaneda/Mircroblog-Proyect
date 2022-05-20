@@ -433,7 +433,7 @@ public class StepDefinitions {
         WebElement username = driver.findElement(By.id("username"));
         WebElement password = driver.findElement(By.id("password"));
 
-       // username.sendKeys("JOEL");
+       username.sendKeys("JOEL");
         password.sendKeys("1234");
 
         clickBoton();
