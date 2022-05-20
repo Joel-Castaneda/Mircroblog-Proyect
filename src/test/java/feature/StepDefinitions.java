@@ -56,7 +56,7 @@ public class StepDefinitions {
         WebElement username = driver.findElement(By.id("username"));
         WebElement password = driver.findElement(By.id("password"));
 
-        username.sendKeys("joel57");
+        username.sendKeys("joel3124");
         password.sendKeys("1234");
     }
 
@@ -306,7 +306,6 @@ public class StepDefinitions {
         WebElement explore = driver.findElement(By.xpath("/html/body/nav/div/div[2]/ul[1]/li[2]/a"));
         explore.click();
     }
-
     @Then("messages are loaded")
     public void messagesAreLoaded() {
         WebElement message = driver.findElement(By.xpath("/html/body/div/table[1]/tbody/tr/td[2]/span[2]"));
@@ -316,20 +315,19 @@ public class StepDefinitions {
     //Segundo caso de prueba
     @And("click traslate button")
     public void clickTraslateButton(){
-        WebElement traslate = driver.findElement(By.xpath("//a[contains(.,'Translate')]"));
+        WebElement traslate = driver.findElement(By.xpath("//span[3]/a"));
         traslate.click();
     }
-
     @Then("error msg server appears")
     public void errorMsgServerAppears() {
-        WebElement error = driver.findElement(By.xpath("//span[contains(.,'Error: the translation service failed.')]"));
+        WebElement error = driver.findElement(By.xpath("//td[2]/span[3]"));
         assertTrue(error.isDisplayed());
     }
 
     //Tercer caso de prueba
     @Then("not msg server error appears")
     public void notMsgServerErrorAppears() {
-        WebElement error = driver.findElement(By.xpath("//span[contains(.,'Error: the translation service failed.')]"));
+        WebElement error = driver.findElement(By.xpath("//td[2]/span[3]"));
         assertFalse(error.isDisplayed());
     }
 
@@ -383,7 +381,6 @@ public class StepDefinitions {
         assertTrue(username.isDisplayed());
     }
 
-<<<<<<< HEAD
     //Send Message
     //Message
 
@@ -422,7 +419,49 @@ public class StepDefinitions {
         WebElement alert = driver.findElement(By.id("post"));
 
     }
-=======
+
+    //Edit profile
+
+    @Given("be logged in")
+    public void beLoggedIn() {
+        WebElement username = driver.findElement(By.id("username"));
+        WebElement password = driver.findElement(By.id("password"));
+
+       // username.sendKeys("JOEL");
+        password.sendKeys("1234");
+    }
+
+    @When("I input my profile changes")
+    public void i_input_my_profile_changes() {
+        int userSuffix = Integer.parseInt(new Random().nextInt(10000) + "");
+        WebElement lProfile = driver.findElement(By.linkText("Perfil"));
+        lProfile.click();
+        WebElement lEditProfile = driver.findElement(By.cssSelector("[href='/edit_profile']"));
+        lEditProfile.click();
+        WebElement tEdit = driver.findElement(By.cssSelector("div.container h1"));
+        assertTrue(tEdit.isDisplayed());
+        WebElement nUser = driver.findElement(By.id("username"));
+        nUser.sendKeys("Joel"+userSuffix);
+        nUser.click();
+        WebElement tAboutMe = driver.findElement(By.id("about_me"));
+        tAboutMe.sendKeys("IDK enjoy life");//no se me ocurrio que poner
+        tAboutMe.click();
+
+    }
+
+    @And("click on send button")
+    public void clickOnSendButton() {
+        clickBoton();
+    }
+
+
+    @Then("the alert of changes made appears")
+    public void theAlertOfChangesMadeAppears() {
+        WebElement editAlert = driver.findElement(By.cssSelector(".alert"));
+        assertTrue(editAlert.isDisplayed());
+    }
+
+    //Omar
     @Given("I am logged in the application")
     public void givenIAmLoggedIn() {
         System.out.println("Hello world!");
@@ -437,9 +476,6 @@ public class StepDefinitions {
         System.out.println("alors, comment vais tu!");
     }
 
-
-
->>>>>>> df6007476bb11b6290732a956a49bed605c99f85
 
 }
 
