@@ -346,6 +346,12 @@ public class StepDefinitions {
 
     //Forgot Password
     //Primer escenario
+    @Given("Click en contraseña olvidada")
+    public void clickEnContraseñaOlvidada() {
+        WebElement FPassword = driver.findElement(By.linkText("Haz click aquí para pedir una nueva"));
+
+        FPassword.click();
+    }
 
     @When("Enter email")
     public void enterEmail() {
@@ -477,7 +483,6 @@ public class StepDefinitions {
     public void iCanSeeTheCommentInTheMainPage() {
         System.out.println("alors, comment vais tu!");
     }
-
 
 }
 
