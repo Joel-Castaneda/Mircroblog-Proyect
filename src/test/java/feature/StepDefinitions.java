@@ -56,7 +56,7 @@ public class StepDefinitions {
         WebElement username = driver.findElement(By.id("username"));
         WebElement password = driver.findElement(By.id("password"));
 
-        username.sendKeys("joel");
+        username.sendKeys("joel57");
         password.sendKeys("1234");
     }
 
@@ -188,7 +188,7 @@ public class StepDefinitions {
         WebElement email = driver.findElement(By.id("email"));
 
 
-        username.sendKeys("joel57");
+        username.sendKeys("joel");
         password.sendKeys("1234");
         rpassword.sendKeys("1234");
         email.sendKeys("joel"+userSuffix+"@gmail.com");
@@ -337,6 +337,22 @@ public class StepDefinitions {
         WebElement username = driver.findElement(By.id("username"));
         assertTrue(username.isDisplayed());
     }
+
+    @Given("I am logged in the application")
+    public void givenIAmLoggedIn() {
+        System.out.println("Hello world!");
+    }
+
+    @When("I publish a comment")
+    public void iPublishAComment() {
+        System.out.println("hallo welt!");
+    }
+    @Then("I can see the comment in the main page")
+    public void iCanSeeTheCommentInTheMainPage() {
+        System.out.println("alors, comment vais tu!");
+    }
+
+
 
 
 }
