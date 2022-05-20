@@ -56,7 +56,7 @@ public class StepDefinitions {
         WebElement username = driver.findElement(By.id("username"));
         WebElement password = driver.findElement(By.id("password"));
 
-        username.sendKeys("joel");
+        username.sendKeys("joel57");
         password.sendKeys("1234");
     }
 
@@ -299,6 +299,51 @@ public class StepDefinitions {
 
     }
 
+    //Explore
+    //Primer caso de prueba
+    @When("i click the explore link")
+    public void iClickTheExploreLink() {
+        WebElement explore = driver.findElement(By.xpath("/html/body/nav/div/div[2]/ul[1]/li[2]/a"));
+        explore.click();
+    }
+
+    @Then("messages are loaded")
+    public void messagesAreLoaded() {
+        WebElement message = driver.findElement(By.xpath("/html/body/div/table[1]/tbody/tr/td[2]/span[2]"));
+        assertTrue(message.isDisplayed());
+    }
+
+    //Segundo caso de prueba
+    @And("click traslate button")
+    public void clickTraslateButton(){
+        WebElement traslate = driver.findElement(By.xpath("//a[contains(.,'Translate')]"));
+        traslate.click();
+    }
+
+    @Then("error msg server appears")
+    public void errorMsgServerAppears() {
+        WebElement error = driver.findElement(By.xpath("//span[contains(.,'Error: the translation service failed.')]"));
+        assertTrue(error.isDisplayed());
+    }
+
+    //Tercer caso de prueba
+    @Then("not msg server error appears")
+    public void notMsgServerErrorAppears() {
+        WebElement error = driver.findElement(By.xpath("//span[contains(.,'Error: the translation service failed.')]"));
+        assertFalse(error.isDisplayed());
+    }
+
+    //Cuarto caso de prueba
+    @And("click profile button")
+    public void clickProfileButton(){
+        WebElement profile = driver.findElement(By.xpath("/html/body/div/table[1]/tbody/tr/td[2]/a"));
+        profile.click();
+    }
+    @Then("profile appears")
+    public void profileAppears() {
+        WebElement imageProfile = driver.findElement(By.xpath("/html/body/div/table[1]/tbody/tr/td[1]/img"));
+        assertTrue(imageProfile.isDisplayed());
+    }
 
 
     //Forgot Password
@@ -338,6 +383,44 @@ public class StepDefinitions {
         assertTrue(username.isDisplayed());
     }
 
+    //Send Message
+    //Message
+
+    @When("I write the message")
+    public void i_write_the_message() {
+        WebElement post = driver.findElement(By.id("post"));
+        post.sendKeys("Testing");
+    }
+
+    @When("click the send button")
+    public void click_the_send_button() {
+        clickBoton();
+    }
+
+    @Then("the message is sent")
+    public void the_message_is_sent() {
+        WebElement alert = driver.findElement(By.id("post"));
+        assertTrue(alert.isDisplayed());
+    }
+
+    //Empty Message
+
+    @When("I write an empty message")
+    public void i_write_an_empty_message() {
+        WebElement post = driver.findElement(By.id("post"));
+        post.sendKeys("");
+    }
+
+    @When("click the message button")
+    public void click_the_message_button() {
+        clickBoton();
+    }
+
+    @Then("the message is not sent")
+    public void the_message_is_not_sent() {
+        WebElement alert = driver.findElement(By.id("post"));
+
+    }
 
 }
 
