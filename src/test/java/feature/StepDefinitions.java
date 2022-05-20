@@ -429,6 +429,8 @@ public class StepDefinitions {
 
        // username.sendKeys("JOEL");
         password.sendKeys("1234");
+
+        clickBoton();
     }
 
     @When("I input my profile changes")
