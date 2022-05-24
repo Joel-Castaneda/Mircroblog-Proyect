@@ -25,4 +25,6 @@ public class MicroblogApp {
     public HomePage getHomePage() {
         return new HomePage(driver);
     }
+
+    public RegisterPage getRegisterPage() {return new RegisterPage(driver); }
 }

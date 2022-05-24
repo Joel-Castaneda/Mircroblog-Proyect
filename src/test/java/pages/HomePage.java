@@ -15,19 +15,20 @@ public class HomePage {
     WebElement welcomeHdr;
     WebElement messagePst;
 
-    WebElement signInBtn;
+
+    @FindBy(css = "[href='/auth/logout']")
+    WebElement logoutBtn;
+
     public HomePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
     public void validarMensajeDeBienvenida(String user) {
-        //userTxt.sendKeys(user);
-        //passTxt.sendKeys(pass);
-
         assertTrue(welcomeHdr.getText().contains(user));
+    }
 
-
-
+    public void clickLogOut(){
+        logoutBtn.click();
     }
 }

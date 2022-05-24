@@ -23,16 +23,6 @@ public class StepDefinitions {
     WebDriver driver;
     MicroblogApp microblogApp;
 
-    public void validarDriver(){
-        assertNotNull(driver);
-        assertEquals("página incorrecta", "https://selenium-automation-microblog.herokuapp.com/auth/login", driver.getCurrentUrl());
-    }
-
-    public void clickBoton(){
-        WebElement button = driver.findElement(By.className("btn"));
-        button.click();
-    }
-
     @Before
     public void openBrowser(){
         driver = new ChromeDriver();
@@ -51,31 +41,22 @@ public class StepDefinitions {
 
     @Given("Test page is not down")
     public void test_page_is_not_down(){
-        validarDriver();
+        microblogApp.getLoginPage().validarDriver();
     }
 
     @When("i write my information")
     public void IWriteMyInformation(){
         microblogApp.getLoginPage().ingresarCredendiales("joel3124", "1234");
-
-//        WebElement username = driver.findElement(By.id("username"));
-//        WebElement password = driver.findElement(By.id("password"));
-//
-//        username.sendKeys("joel3124");
-//        password.sendKeys("1234");
     }
 
     @And("i click the login button")
     public void IClickTheLoginButton(){
         microblogApp.getLoginPage().clickBotonSignIn();
-//        clickBoton();
     }
 
     @Then("a welcome message pops up")
     public void AWelcomeMessagePopsUp(){
         microblogApp.getHomePage().validarMensajeDeBienvenida("joel3124");
-//        WebElement alert = driver.findElement(By.id("post"));
-//        assertTrue(alert.isDisplayed());
     }
 
     //Segundo Escenario: usuario incorrecto
@@ -85,19 +66,12 @@ public class StepDefinitions {
     public void iEnterAnUsernameNotRegisteredWithAPassword() {
 
         microblogApp.getLoginPage().ingresarCredendiales("leoj", "1234");
-//        WebElement username = driver.findElement(By.id("username"));
-//        WebElement password = driver.findElement(By.id("password"));
-//
-//        username.sendKeys("leoj");
-//        password.sendKeys("1234");
     }
 
 
     @Then("an error message appears")
     public void anErrorMessageAppears() {
-        microblogApp.getLoginPage().validarmensajeError();
-        WebElement alert = driver.findElement(By.className("alert"));
-        assertTrue(alert.isDisplayed());
+            microblogApp.getLoginPage().validarAlerta();
     }
 
 
@@ -105,169 +79,108 @@ public class StepDefinitions {
 
     @When("i enter a registered username with a wrong password")
     public void iEnterARegisteredUsernameWithAWrongPassword() {
-        WebElement username = driver.findElement(By.id("username"));
-        WebElement password = driver.findElement(By.id("password"));
-
-        username.sendKeys("joel");
-        password.sendKeys("123456");
+        microblogApp.getLoginPage().ingresarCredendiales("joel", "123456");
     }
 
     //Cuarto Escenario: click en el checkbox
 
     @When("i write my information with the checkbox marked")
     public void iWriteMyInformationWithTheCheckboxMarked() {
-        WebElement username = driver.findElement(By.id("username"));
-        WebElement password = driver.findElement(By.id("password"));
-        WebElement checkbox = driver.findElement(By.name("remember_me"));
-
-        username.sendKeys("joel");
-        password.sendKeys("1234");
-        checkbox.click();
+        microblogApp.getLoginPage().ingresarCredendiales("joel3124", "1234");
+        microblogApp.getLoginPage().clickCheckBox();
     }
 
     @And("i click on log out")
     public void iClickOnLogOut() {
-        WebElement logout = driver.findElement(By.cssSelector("[href='/auth/logout']"));
-
-        logout.click();
+        microblogApp.getHomePage().clickLogOut();
     }
 
     @Then("my information should appear already writen")
     public void myInformationShouldAppearAlreadyWriten() {
-        WebElement username = driver.findElement(By.id("username"));
-        assertNotEquals("No se encontraron datos","", username.getText());
+        microblogApp.getLoginPage().validarUsuario();
     }
 
     //Primer caso-Registro
 
     @Given("being in register page")
     public void beingInRegisterPage() {
-        WebElement register = driver.findElement(By.linkText("¡Haz click aquí para registrarte!"));
-        register.click();
+        microblogApp.getLoginPage().clickPaginaRegistro();
     }
 
     @When("i write all my information")
     public void iWriteAllMyInformation(){
-        int userSuffix = Integer.parseInt(new Random().nextInt(10000) + "");
-        WebElement username = driver.findElement(By.id("username"));
-        WebElement password = driver.findElement(By.id("password"));
-        WebElement rpassword = driver.findElement(By.id("password2"));
-        WebElement email = driver.findElement(By.id("email"));
-
-
-        username.sendKeys("joel"+userSuffix);
-        password.sendKeys("1234");
-        rpassword.sendKeys("1234");
-        email.sendKeys("joel"+userSuffix+"@gmail.com");
+        microblogApp.getRegisterPage().registrarUsuario("joel", "joel", "1234");
     }
 
     @And("i click the register button")
     public void iClickTheRegisterButton() {
-        clickBoton();
+        microblogApp.getRegisterPage().clickBotonDeRegistro();
     }
 
     @Then("a successful registration message should pop out")
     public void aSuccessfulRegistrationMessageShouldPopOut() {
-        WebElement alert = driver.findElement(By.className("alert"));
-
-        assertTrue(alert.isDisplayed());
+        microblogApp.getLoginPage().validarAlerta();
     }
 
     //Segundo Escenario
 
     @When("i click the register button without any info")
     public void iClickTheRegisterButtonWithotAnyInfo() {
-        clickBoton();
+        microblogApp.getRegisterPage().clickBotonDeRegistro();
     }
 
 
     @Then("should stay in register page")
     public void ShouldStayInRegisterPage() {
-        assertNotNull(driver);
-        assertEquals("página incorrecta", "https://selenium-automation-microblog.herokuapp.com/auth/register", driver.getCurrentUrl());
+       microblogApp.getRegisterPage().validarDireccion();
     }
 
     //Tercer Escenario
 
     @When("i enter my information using an username that already exists")
     public void iEnterMyInformationUsingAnUsernameThatAlreadyExists() {
-        int userSuffix = Integer.parseInt(new Random().nextInt(10000) + "");
-        WebElement username = driver.findElement(By.id("username"));
-        WebElement password = driver.findElement(By.id("password"));
-        WebElement rpassword = driver.findElement(By.id("password2"));
-        WebElement email = driver.findElement(By.id("email"));
-
-
-        username.sendKeys("joel");
-        password.sendKeys("1234");
-        rpassword.sendKeys("1234");
-        email.sendKeys("joel"+userSuffix+"@gmail.com");
+        microblogApp.getRegisterPage().registroconUsuarioYaExistente("joel3124","joel",
+                "1234");
     }
 
 
     @Then("an error message should appear")
     public void anErrorMessageShouldAppear() {
-        WebElement alert = driver.findElement(By.className("help-block"));
-        assertTrue(alert.isDisplayed());
+        microblogApp.getRegisterPage().mensajeDeError();
     }
 
     //Cuarto Escenario
 
     @When("i enter my information using an email that already is in use")
     public void iEnterMyInformationUsingAnEmailThatAlreadyIsInUse() {
-        int userSuffix = Integer.parseInt(new Random().nextInt(10000) + "");
-        WebElement username = driver.findElement(By.id("username"));
-        WebElement password = driver.findElement(By.id("password"));
-        WebElement rpassword = driver.findElement(By.id("password2"));
-        WebElement email = driver.findElement(By.id("email"));
-
-
-        username.sendKeys("joel"+userSuffix);
-        password.sendKeys("1234");
-        rpassword.sendKeys("1234");
-        email.sendKeys("joel@gmail.com");
+        microblogApp.getRegisterPage().registroconEmailYaExistente("joel","joel@gmail.com","1234");
     }
 
     //Quinto Escenario
 
     @When("i enter my information while the info in both password fields don't coincide")
     public void iEnterMyInformationWhileTheInfoInBothPasswordFieldsDonTCoincide() {
-        int userSuffix = Integer.parseInt(new Random().nextInt(10000) + "");
-        WebElement username = driver.findElement(By.id("username"));
-        WebElement password = driver.findElement(By.id("password"));
-        WebElement rpassword = driver.findElement(By.id("password2"));
-        WebElement email = driver.findElement(By.id("email"));
-
-
-        username.sendKeys("joel"+userSuffix);
-        password.sendKeys("123456");
-        rpassword.sendKeys("1234");
-        email.sendKeys("joel"+userSuffix+"@gmail.com");
+        microblogApp.getRegisterPage().registroconContraseñasQueNoCoinciden("joel","joel","1234", "4569");
     }
 
     //Sexto Escenario
 
     @When("i enter my information using an invalid email")
     public void iEnterMyInformationUsingAnInvalidEmail() {
-        int userSuffix = Integer.parseInt(new Random().nextInt(10000) + "");
-        WebElement username = driver.findElement(By.id("username"));
-        WebElement password = driver.findElement(By.id("password"));
-        WebElement rpassword = driver.findElement(By.id("password2"));
-        WebElement email = driver.findElement(By.id("email"));
-
-
-        username.sendKeys("joel"+userSuffix);
-        password.sendKeys("1234");
-        rpassword.sendKeys("1234");
-        email.sendKeys("joel");
+        microblogApp.getRegisterPage().registroconEmailInvalido("joel","joel","1234");
     }
 
     @Given("being logged")
     public void being_logged() {
-        test_page_is_not_down();
+        microblogApp.getLoginPage().validarDriver();
+        microblogApp.getLoginPage().ingresarCredendiales("joel3124", "1234");
+        microblogApp.getLoginPage().clickBotonSignIn();
+        microblogApp.getLoginPage().validarAlerta();
+        
+/*        test_page_is_not_down();
         IWriteMyInformation();
         IClickTheLoginButton();
-        AWelcomeMessagePopsUp();
+        AWelcomeMessagePopsUp();*/
     }
 
     //Primer Escenario - Follow Other Profiles
@@ -372,7 +285,7 @@ public class StepDefinitions {
 
     @And("Click Button")
     public void clickButton() {
-        clickBoton();
+        //clickBoton();
     }
 
     //Segundo Escenario
@@ -408,7 +321,7 @@ public class StepDefinitions {
 
     @When("click the send button")
     public void click_the_send_button() {
-        clickBoton();
+        //clickBoton();
     }
 
     @Then("the message is sent")
@@ -427,7 +340,7 @@ public class StepDefinitions {
 
     @When("click the message button")
     public void click_the_message_button() {
-        clickBoton();
+        //clickBoton();
     }
 
     @Then("the message is not sent")
@@ -446,7 +359,7 @@ public class StepDefinitions {
        username.sendKeys("JOEL");
         password.sendKeys("1234");
 
-        clickBoton();
+        //clickBoton();
     }
 
     @When("I input my profile changes")
@@ -469,7 +382,7 @@ public class StepDefinitions {
 
     @And("click on send button")
     public void clickOnSendButton() {
-        clickBoton();
+        //clickBoton();
     }
 
 
