@@ -4,7 +4,7 @@ https://player.vimeo.com/video/710565446?h=214445ebcf&amp;badge=0&amp;autopause=
 Mini tutorial de cucumber
 
 Para crear un archivo de cucumber es:
-clic derecho en el paquete feature -> New -> File -> ingresan el nombre del capability con la extensión ".feature"
+clic derecho en el paquete steps -> New -> File -> ingresan el nombre del capability con la extensión ".steps"
 
 El "Feature:" es el nombre del capability
 El "Scenario:" es el nombre del caso de prueba a realizar
@@ -40,5 +40,5 @@ public void IWatchMovies(){
     cambiar el canal
 }
 
-Para ejecutar un "Scenario" le dan clic en las flechitas verdes que están a la izquierda en el archivo de cucumber (.feature)
+Para ejecutar un "Scenario" le dan clic en las flechitas verdes que están a la izquierda en el archivo de cucumber (.steps)
 Si le dan clic a ejecutar en el "Feature" se ejecutarán todos los escenarios

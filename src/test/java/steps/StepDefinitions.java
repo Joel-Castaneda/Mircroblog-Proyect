@@ -1,5 +1,6 @@
-package feature;
+package steps;
 
+import apps.MicroblogApp;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
@@ -20,6 +21,7 @@ public class StepDefinitions {
 
     String perfil = "hector";
     WebDriver driver;
+    MicroblogApp microblogApp;
 
     public void validarDriver(){
         assertNotNull(driver);
@@ -34,6 +36,7 @@ public class StepDefinitions {
     @Before
     public void openBrowser(){
         driver = new ChromeDriver();
+        microblogApp = new MicroblogApp(driver);
 
         driver.get("https://selenium-automation-microblog.herokuapp.com/auth/login");
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
@@ -53,22 +56,26 @@ public class StepDefinitions {
 
     @When("i write my information")
     public void IWriteMyInformation(){
-        WebElement username = driver.findElement(By.id("username"));
-        WebElement password = driver.findElement(By.id("password"));
+        microblogApp.getLoginPage().ingresarCredendiales("joel3124", "1234");
 
-        username.sendKeys("joel3124");
-        password.sendKeys("1234");
+//        WebElement username = driver.findElement(By.id("username"));
+//        WebElement password = driver.findElement(By.id("password"));
+//
+//        username.sendKeys("joel3124");
+//        password.sendKeys("1234");
     }
 
     @And("i click the login button")
     public void IClickTheLoginButton(){
-        clickBoton();
+        microblogApp.getLoginPage().clickBotonSignIn();
+//        clickBoton();
     }
 
     @Then("a welcome message pops up")
     public void AWelcomeMessagePopsUp(){
-        WebElement alert = driver.findElement(By.id("post"));
-        assertTrue(alert.isDisplayed());
+        microblogApp.getHomePage().validarMensajeDeBienvenida("joel3124");
+//        WebElement alert = driver.findElement(By.id("post"));
+//        assertTrue(alert.isDisplayed());
     }
 
     //Segundo Escenario: usuario incorrecto
@@ -76,16 +83,19 @@ public class StepDefinitions {
 
     @When("i enter an username not registered with a password")
     public void iEnterAnUsernameNotRegisteredWithAPassword() {
-        WebElement username = driver.findElement(By.id("username"));
-        WebElement password = driver.findElement(By.id("password"));
 
-        username.sendKeys("leoj");
-        password.sendKeys("1234");
+        microblogApp.getLoginPage().ingresarCredendiales("leoj", "1234");
+//        WebElement username = driver.findElement(By.id("username"));
+//        WebElement password = driver.findElement(By.id("password"));
+//
+//        username.sendKeys("leoj");
+//        password.sendKeys("1234");
     }
 
 
     @Then("an error message appears")
     public void anErrorMessageAppears() {
+        microblogApp.getLoginPage().validarmensajeError();
         WebElement alert = driver.findElement(By.className("alert"));
         assertTrue(alert.isDisplayed());
     }
