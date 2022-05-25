@@ -1,11 +1,12 @@
 package runners;
+
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = {
-        "src/test/resources/features/Register.feature"
+        "src/test/resources/features/ForgotPassword.feature"
 },
         strict = false, plugin = {"pretty",
         "json:target/cucumber_json_reports/login.json",
@@ -15,6 +16,5 @@ import org.junit.runner.RunWith;
                 "steps"})
 
 
-public class RegisterRunner {
-
+public class ForgotPasswordRunner {
 }

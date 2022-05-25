@@ -176,7 +176,7 @@ public class StepDefinitions {
         microblogApp.getLoginPage().ingresarCredendiales("joel3124", "1234");
         microblogApp.getLoginPage().clickBotonSignIn();
         microblogApp.getLoginPage().validarAlerta();
-        
+
 /*        test_page_is_not_down();
         IWriteMyInformation();
         IClickTheLoginButton();
@@ -188,10 +188,10 @@ public class StepDefinitions {
     @When("select other profile")
     public void selectOtherProfile(){
 
-        WebElement pExplore  = driver.findElement(By.cssSelector("[href='/explore']"));
+/*        WebElement pExplore  = driver.findElement(By.cssSelector("[href='/explore']"));
         pExplore.click();
         WebElement sProfile = driver.findElement(By.linkText(perfil));
-        sProfile.click();
+        sProfile.click();*/
     }
 
     @And("click on follow")
@@ -271,30 +271,24 @@ public class StepDefinitions {
     //Primer escenario
     @Given("Click en contraseña olvidada")
     public void clickEnContraseñaOlvidada() {
-        WebElement FPassword = driver.findElement(By.linkText("Haz click aquí para pedir una nueva"));
-
-        FPassword.click();
+        microblogApp.getForgotPasswordPage().setContraseñaOlvidadaTxt();
     }
 
     @When("Enter email")
     public void enterEmail() {
-        WebElement email = driver.findElement(By.id("email"));
-
-        email.sendKeys("joel@gmail.com");
+        microblogApp.getForgotPasswordPage().setEmailTxt("joel54@gmail.com");
     }
 
     @And("Click Button")
     public void clickButton() {
-        //clickBoton();
+        microblogApp.getForgotPasswordPage().clickContrsañeOlvidadaBtn();
     }
 
     //Segundo Escenario
 
     @When("Enter invalid email")
     public void enterInvalidEmail() {
-        WebElement email = driver.findElement(By.id("email"));
-
-        email.sendKeys("joel");
+        microblogApp.getForgotPasswordPage().setEmailTxt("asdasd");
     }
 
     //Logout
