@@ -181,41 +181,21 @@ public class StepDefinitions {
     //Primer Escenario - Follow Other Profiles
 
     @When("select other profile")
-    public void selectOtherProfile(){
-
-/*        WebElement pExplore  = driver.findElement(By.cssSelector("[href='/explore']"));
-        pExplore.click();
-        WebElement sProfile = driver.findElement(By.linkText(perfil));
-        sProfile.click();*/
-    }
+    public void selectOtherProfile(){ microblogApp.getFollowProfilePage().selectOtherProfile();}
 
     @And("click on follow")
-    public void clickOnFollow(){
-        WebElement bFollow = driver.findElement(By.cssSelector(".btn"));
-        bFollow.click();
-    }
+    public void clickOnFollow(){ microblogApp.getFollowProfilePage().clickOnFollow();}
     @Then("follow-up message")
-    public void followUpMessage(){
-        WebElement alerta = driver.findElement(By.cssSelector(".alert"));
-        assertTrue(alerta.isDisplayed());
-
-    }
+    public void followUpMessage(){microblogApp.getFollowProfilePage().followUpMessage();}
 
     //Segundo Escenario - Follow Other Profiles
 
     @And("click stop following")
-    public void clickStopFollowing(){
-        WebElement bFollow = driver.findElement(By.cssSelector(".btn"));
-        bFollow.click();
-    }
+    public void clickStopFollowing(){ microblogApp.getFollowProfilePage().clickStopFollowing();}
 
     @Then("not following message")
-    public void notFollowingMessage(){
-        WebElement alerta = driver.findElement(By.cssSelector(".alert"));
-        assertTrue(alerta.isDisplayed());
+    public void notFollowingMessage(){ microblogApp.getFollowProfilePage().notFollowingMessage();}
 
-
-    }
 
     //Explore
     //Primer caso de prueba

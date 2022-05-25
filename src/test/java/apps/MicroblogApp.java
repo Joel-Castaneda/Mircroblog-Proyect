@@ -11,6 +11,7 @@ public class MicroblogApp {
     HomePage homePage;
     ForgotPasswordPage forgotPasswordPage;
     ExplorePage explorePage;
+    FollowProfilePage followProfilePage;
     WebDriver driver;
 
     public MicroblogApp(WebDriver driver) {
@@ -32,4 +33,6 @@ public class MicroblogApp {
     public ExplorePage getExplorePage() {
         return new ExplorePage(driver);
     }
+
+    public FollowProfilePage getFollowProfilePage() {return new FollowProfilePage(driver);}
 }
