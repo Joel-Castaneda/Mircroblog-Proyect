@@ -1,10 +1,7 @@
 package apps;
 
 import org.openqa.selenium.WebDriver;
-import pages.HomePage;
-import pages.LoginPage;
-import pages.MenuPage;
-import pages.RegisterPage;
+import pages.*;
 
 public class MicroblogApp {
 
@@ -27,4 +24,8 @@ public class MicroblogApp {
     }
 
     public RegisterPage getRegisterPage() {return new RegisterPage(driver); }
+
+    public ExplorePage getExplorePage() {
+        return new ExplorePage(driver);
+    }
 }
