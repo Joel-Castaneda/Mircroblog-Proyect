@@ -26,6 +26,12 @@ public class MicroblogApp {
 
     public RegisterPage getRegisterPage() {return new RegisterPage(driver); }
 
+<<<<<<< HEAD
     public ForgotPasswordPage getForgotPasswordPage(){return new ForgotPasswordPage(driver);}
 
+=======
+    public ExplorePage getExplorePage() {
+        return new ExplorePage(driver);
+    }
+>>>>>>> c21790df109057dbae5ac050f95bb156c56a5edd
 }

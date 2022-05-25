@@ -175,8 +175,13 @@ public class StepDefinitions {
         microblogApp.getLoginPage().validarDriver();
         microblogApp.getLoginPage().ingresarCredendiales("joel3124", "1234");
         microblogApp.getLoginPage().clickBotonSignIn();
+<<<<<<< HEAD
         microblogApp.getLoginPage().validarAlerta();
 
+=======
+
+        
+>>>>>>> c21790df109057dbae5ac050f95bb156c56a5edd
 /*        test_page_is_not_down();
         IWriteMyInformation();
         IClickTheLoginButton();
@@ -226,44 +231,37 @@ public class StepDefinitions {
     //Primer caso de prueba
     @When("i click the explore link")
     public void iClickTheExploreLink() {
-        WebElement explore = driver.findElement(By.xpath("/html/body/nav/div/div[2]/ul[1]/li[2]/a"));
-        explore.click();
+        microblogApp.getHomePage().clickExplorePage();
     }
     @Then("messages are loaded")
     public void messagesAreLoaded() {
-        WebElement message = driver.findElement(By.xpath("/html/body/div/table[1]/tbody/tr/td[2]/span[2]"));
-        assertTrue(message.isDisplayed());
+        microblogApp.getExplorePage().verificarmensajesenviados();
     }
 
     //Segundo caso de prueba
     @And("click traslate button")
     public void clickTraslateButton(){
-        WebElement traslate = driver.findElement(By.xpath("//span[3]/a"));
-        traslate.click();
+        microblogApp.getExplorePage().traducirmensajes();
     }
     @Then("error msg server appears")
     public void errorMsgServerAppears() {
-        WebElement error = driver.findElement(By.xpath("//td[2]/span[3]"));
-        assertTrue(error.isDisplayed());
+        microblogApp.getExplorePage().verificarerrordemensaje();
     }
 
     //Tercer caso de prueba
     @Then("not msg server error appears")
     public void notMsgServerErrorAppears() {
-        WebElement error = driver.findElement(By.xpath("//td[2]/span[3]"));
-        assertFalse(error.isDisplayed());
+        microblogApp.getExplorePage().verificarquenohayaerror();
     }
 
     //Cuarto caso de prueba
     @And("click profile button")
     public void clickProfileButton(){
-        WebElement profile = driver.findElement(By.xpath("/html/body/div/table[1]/tbody/tr/td[2]/a"));
-        profile.click();
+    microblogApp.getExplorePage().visitarotroperfil();
     }
     @Then("profile appears")
     public void profileAppears() {
-        WebElement imageProfile = driver.findElement(By.xpath("/html/body/div/table[1]/tbody/tr/td[1]/img"));
-        assertTrue(imageProfile.isDisplayed());
+       microblogApp.getExplorePage().Elperfilesvisible();
     }
 
 

@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,7 +19,8 @@ public class HomePage {
 
     @FindBy(css = "[href='/auth/logout']")
     WebElement logoutBtn;
-
+    @FindBy(css = "[href='/explore']")
+    WebElement ExplorePage;
     public HomePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -30,5 +32,9 @@ public class HomePage {
 
     public void clickLogOut(){
         logoutBtn.click();
+    }
+
+    public void clickExplorePage() {
+        ExplorePage.click();
     }
 }
