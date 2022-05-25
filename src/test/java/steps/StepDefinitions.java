@@ -175,17 +175,7 @@ public class StepDefinitions {
         microblogApp.getLoginPage().validarDriver();
         microblogApp.getLoginPage().ingresarCredendiales("joel3124", "1234");
         microblogApp.getLoginPage().clickBotonSignIn();
-<<<<<<< HEAD
-        microblogApp.getLoginPage().validarAlerta();
-
-=======
-
-        
->>>>>>> c21790df109057dbae5ac050f95bb156c56a5edd
-/*        test_page_is_not_down();
-        IWriteMyInformation();
-        IClickTheLoginButton();
-        AWelcomeMessagePopsUp();*/
+        //microblogApp.getLoginPage().validarAlerta();
     }
 
     //Primer Escenario - Follow Other Profiles
