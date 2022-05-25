@@ -293,14 +293,12 @@ public class StepDefinitions {
     //Logout
     @When("i click the logout button")
     public void iClickTheLogoutButton() {
-        WebElement logbutton = driver.findElement(By.cssSelector("[href='/auth/logout']"));
-        logbutton.click();
+       microblogApp.getHomePage().clickLogOut();
     }
 
     @Then("the inputs to login should be displayed")
     public void theInputsToLoginShouldBeDisplayed() {
-        WebElement username = driver.findElement(By.id("username"));
-        assertTrue(username.isDisplayed());
+        microblogApp.getLoginPage().validarAlerta();
     }
 
     //Send Message
