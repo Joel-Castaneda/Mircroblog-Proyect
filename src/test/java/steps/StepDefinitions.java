@@ -175,7 +175,7 @@ public class StepDefinitions {
         microblogApp.getLoginPage().validarDriver();
         microblogApp.getLoginPage().ingresarCredendiales("joel3124", "1234");
         microblogApp.getLoginPage().clickBotonSignIn();
-        microblogApp.getLoginPage().validarAlerta();
+        //microblogApp.getLoginPage().validarAlerta();
         
 /*        test_page_is_not_down();
         IWriteMyInformation();
