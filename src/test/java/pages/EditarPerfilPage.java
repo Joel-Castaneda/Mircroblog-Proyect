@@ -12,7 +12,7 @@ import static org.junit.Assert.assertTrue;
 public class EditarPerfilPage {
     WebDriver driver;
 
-    @FindBy (css = "[href='/user/jaime2']")
+    @FindBy (css = "[href='/user/joel2933']")
     WebElement perfil;
 
     @FindBy (css = "[href='/edit_profile']")
