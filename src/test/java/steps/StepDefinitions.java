@@ -173,7 +173,7 @@ public class StepDefinitions {
     @Given("being logged")
     public void being_logged() {
         microblogApp.getLoginPage().validarDriver();
-        microblogApp.getLoginPage().ingresarCredendiales("joel2933", "1234");
+        microblogApp.getLoginPage().ingresarCredendiales("joel3124", "1234");
         microblogApp.getLoginPage().clickBotonSignIn();
         //microblogApp.getLoginPage().validarAlerta();
     }
