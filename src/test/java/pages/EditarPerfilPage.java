@@ -45,6 +45,7 @@ public class EditarPerfilPage {
 
     public void IPutMyChanges(){
         int userSuffix = Integer.parseInt(new Random().nextInt(10000) + "");
+        nUser.clear();
         nUser.sendKeys("Jaime1"+userSuffix);
         tAboutMe.sendKeys("IDK enjoy life");
     }
