@@ -35,4 +35,6 @@ public class MicroblogApp {
     }
 
     public FollowProfilePage getFollowProfilePage() {return new FollowProfilePage(driver);}
+
+    public EditarPerfilPage getEditarPerfilPage() {return new EditarPerfilPage(driver);}
 }

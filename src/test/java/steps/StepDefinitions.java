@@ -173,7 +173,7 @@ public class StepDefinitions {
     @Given("being logged")
     public void being_logged() {
         microblogApp.getLoginPage().validarDriver();
-        microblogApp.getLoginPage().ingresarCredendiales("joel3124", "1234");
+        microblogApp.getLoginPage().ingresarCredendiales("jaime2", "1234");
         microblogApp.getLoginPage().clickBotonSignIn();
         //microblogApp.getLoginPage().validarAlerta();
     }
@@ -313,45 +313,25 @@ public class StepDefinitions {
 
     //Edit profile
 
-    @Given("be logged in")
-    public void beLoggedIn() {
-        WebElement username = driver.findElement(By.id("username"));
-        WebElement password = driver.findElement(By.id("password"));
-
-       username.sendKeys("JOEL");
-        password.sendKeys("1234");
-
-        //clickBoton();
-    }
 
     @When("I input my profile changes")
     public void i_input_my_profile_changes() {
-        int userSuffix = Integer.parseInt(new Random().nextInt(10000) + "");
-        WebElement lProfile = driver.findElement(By.linkText("Perfil"));
-        lProfile.click();
-        WebElement lEditProfile = driver.findElement(By.cssSelector("[href='/edit_profile']"));
-        lEditProfile.click();
-        WebElement tEdit = driver.findElement(By.cssSelector("div.container h1"));
-        assertTrue(tEdit.isDisplayed());
-        WebElement nUser = driver.findElement(By.id("username"));
-        nUser.sendKeys("Joel"+userSuffix);
-        nUser.click();
-        WebElement tAboutMe = driver.findElement(By.id("about_me"));
-        tAboutMe.sendKeys("IDK enjoy life");//no se me ocurrio que poner
-        tAboutMe.click();
+        microblogApp.getEditarPerfilPage().IclickLinkProfile();
+        microblogApp.getEditarPerfilPage().IclickEditPRofile();
+        microblogApp.getEditarPerfilPage().IPutMyChanges();
+
 
     }
 
     @And("click on send button")
     public void clickOnSendButton() {
-        //clickBoton();
+        microblogApp.getEditarPerfilPage().IclickButtonSaveChanges();
     }
 
 
     @Then("the alert of changes made appears")
     public void theAlertOfChangesMadeAppears() {
-        WebElement editAlert = driver.findElement(By.cssSelector(".alert"));
-        assertTrue(editAlert.isDisplayed());
+        microblogApp.getEditarPerfilPage().TheAlertShows();
     }
 
     //Omar
